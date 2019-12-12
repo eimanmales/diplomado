@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\DB;
-use App\Comuna;
-use App\Municipio;
-
-
-class ComunaController extends Controller
+class MunicipioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +13,11 @@ class ComunaController extends Controller
      */
     public function index()
     {
-        $comunas = DB::table('tb_comuna as c')
-                    ->join('tb_municipio','c.muni_codi','=','tb_municipio.muni_codi')
-                    ->select('c.comu_codi','c.comu_nomb','c.muni_codi','tb_municipio.muni_nomb')
+        $municipios = DB::table('tb_municipio as m')
+                    ->join('tb_departamento','m.depa_codi','=','tb_departamento.depa_codi')
+                    ->select('m.muni_codi','m.muni_nomb','m.depa_codi','tb_departamento.depa_nomb')
                     ->get();
-        return view('comuna.index', compact('comunas'));
+        return view('municipio.index', compact('municipios'));
         //return $comunas;
     }
 
