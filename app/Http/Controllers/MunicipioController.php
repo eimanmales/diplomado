@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Municipio;
+use App\Departamento;
 
 class MunicipioController extends Controller
 {
@@ -29,8 +31,8 @@ class MunicipioController extends Controller
     public function create()
     {
         //
-        $municipios = Municipio::orderBy('muni_nomb')->get();
-        return view('comuna.create',compact('municipios'));
+        $departamentos = Departamento::orderBy('depa_nomb')->get();
+        return view('municipio.create',compact('departamentos'));
     }
 
     /**
@@ -42,12 +44,12 @@ class MunicipioController extends Controller
     public function store(Request $request)
     {
         //
-        $comuna = new Comuna;
+        $municipio = new Municipio;
         //$flight->name = $request->name
-        $comuna->comu_nomb = $request->comu_nomb;
-        $comuna->muni_codi = $request->muni_codi;
-        $comuna->save();
-        return redirect()->route('comuna.index')->with('status','guardado');
+        $municipio->muni_nomb = $request->muni_nomb;
+        $municipio->depa_codi = $request->depa_codi;
+        $municipio->save();
+        return redirect()->route('municipio.index')->with('status','guardado');
     }
 
     /**
@@ -69,9 +71,9 @@ class MunicipioController extends Controller
      */
     public function edit($id)
     {
-        $comuna = Comuna::findOrFail($id);
-        $municipios = Municipio::all();
-        return view('comuna.edit', compact('comuna','municipios'));
+        $municipio = Municipio::findOrFail($id);
+        $departamentos = Departamento::all();
+        return view('municipio.edit', compact('municipio','departamentos'));
     }
 
     /**
@@ -83,10 +85,10 @@ class MunicipioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comuna = Comuna::findOrFail($id);
-        $comuna->fill($request->all());
-        $comuna->save();
-        return redirect()->route('comuna.index')->with('status','actualizado');
+        $municipio = Municipio::findOrFail($id);
+        $municipio->fill($request->all());
+        $municipio->save();
+        return redirect()->route('municipio.index')->with('status','actualizado');
 
     }
 
@@ -98,8 +100,8 @@ class MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        $comuna = Comuna::findOrFail($id);
-        $comuna->delete();
-        return redirect()->route('comuna.index')->with('status','eliminado');
+        $municipio = Municipio::findOrFail($id);
+        $municipio->delete();
+        return redirect()->route('municipio.index')->with('status','eliminado');
     }
 }
