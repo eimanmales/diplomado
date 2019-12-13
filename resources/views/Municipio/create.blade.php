@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Creación de Comuna')
+@section('title', 'Creación de Municipio')
 
-@section('title2', 'Nueva Comuna')
+@section('title2', 'Nuevo Municipio')
 
 @section('content')
 
@@ -10,25 +10,25 @@
 	<div class="col-sm">
 		<div class="card" style="margin-top: 10px;">
 			<div class="card-body">
-				<form method="POST" action="/comuna" accept-charset="UTF-8" style="display:inline">
+				<form method="POST" action="/municipio" accept-charset="UTF-8" style="display:inline">
 					@csrf			
 					<div class="form-group">
-						<label for="comuna">Comuna</label>
-						<input type="text" class="form-control" name="comu_nomb" id="comu_nomb" aria-describedby="comunalHelp">
-						<small id="comunalHelp" class="form-text text-muted">Nombre de la comuna.</small>
+						<label for="municipio">Municipio</label>
+						<input type="text" class="form-control" name="muni_nomb" id="muni_nomb" aria-describedby="municipiolHelp">
+						<small id="municipiolHelp" class="form-text text-muted">Nombre del Municipio.</small>
 					</div>
 					<div class="form-group">
-						<label for="municipio">Municipio</label>
-						<select name='muni_codi' class = 'form-control'>
+						<label for="departamento">Departamento</label>
+						<select name='depa_codi' class = 'form-control'>
 							<option value="">Seleccione uno ... </option>
-							@foreach($municipios as $municipio)
-								<option value = '{{ $municipio->muni_codi }}'> {{ $municipio->muni_nomb }} </option>
+							@foreach($departamentos as $departamento)
+								<option value = '{{ $departamento->depa_codi }}'> {{ $departamento->depa_nomb }} </option>
 							@endforeach
 						</select>
 					</div>
 					<button type="submit" class="btn btn-primary btn-xs fa fa-save" style="margin-left: 10px"> Grabar </button>				
 				</form>
-				<a href="/comuna" class="btn btn-danger btn-xs fa fa-arrow-alt-circle-right" style="margin-left: 10px"> Cancelar </a>				
+				<a href="/municipio" class="btn btn-danger btn-xs fa fa-arrow-alt-circle-right" style="margin-left: 10px"> Cancelar </a>				
 			</div>
 		</div>
 		</div>
