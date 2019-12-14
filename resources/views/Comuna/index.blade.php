@@ -16,11 +16,13 @@
                 <th>Comuna</th>            
                 <th>Municipio</th>
                 <th class="text-center">
+                    @can('isAdmin') <!--autoriza a quien este autorizado como admin-->
                     <a href="/comuna/create" class="btn btn-primary btn-sm" id="nuevo"  
                         data-toggle="tooltip" title="Nueva Comuna">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         Nueva
                     </a> 
+                    @endcan
                 </th>
             </tr>
         </thead>
@@ -33,13 +35,16 @@
                     <td>{{$comuna->comu_nomb}}</td>
                     <td>{{$comuna->muni_nomb}}</td>
                     <td class="text-center">
+                        @cannot('isAdmin') <!--autoriza a quien este autorizado como admin-->
                         <form method="POST" action="/comuna/{{$comuna->comu_codi}}" accept-charset="UTF-8" 
                             style="display:inline">
                             @csrf <!--para que no salga error 419-->
                             <input name="_method" type="hidden" value="DELETE">					
                             <button type="submit" class="btn btn-danger btn-sm fa fa-trash" style="margin-right: 10px">	</button>				
                         </form>
+                        
                         <a href="/comuna/{{$comuna->comu_codi}}/edit"><i class="btn btn-info btn-sm fa fa-edit"></i></a>
+                        @endcan
                     </td>
                 </tr>
             @endforeach
