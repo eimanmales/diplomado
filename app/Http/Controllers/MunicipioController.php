@@ -22,7 +22,7 @@ class MunicipioController extends Controller
                     ->select('m.muni_codi','m.muni_nomb','m.depa_codi','tb_departamento.depa_nomb')
                     ->get();
         return view('municipio.index', compact('municipios'));
-        //return $comunas;
+        //return $comunas; //todas las comunas
     }
 
     /**
