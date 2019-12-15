@@ -9,6 +9,7 @@
 @section('title2', 'Listado de Municipio')
 
 @section('content')
+<div class="container">
 	<table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="margin-top:10px">
         <thead>
             <tr>
@@ -44,5 +45,6 @@
                 </tr>
             @endforeach
         </tbody>
-	</table>	
+    </table>	
+</div>
 @endsection
